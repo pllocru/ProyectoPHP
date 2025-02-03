@@ -14,10 +14,12 @@ class EmployeeController extends Controller
      * Muestra una lista de empleados.
      */
     public function index()
-    {
-        $employees = Employee::all();
-        return view('employees.index', compact('employees'));
-    }
+{
+        $employees = Employee::paginate(10); // Paginamos la consulta
+
+    return view('employees.index', compact('employees'));
+}
+
 
     /**
      * Muestra el formulario para crear un nuevo empleado.
