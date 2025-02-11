@@ -16,7 +16,7 @@
                     </x-nav-link>
 
                     <!-- Nuevo enlace a Empleados -->
-                    <x-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.index')">
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         {{ __('Empleados') }}
                     </x-nav-link>
                 </div>
