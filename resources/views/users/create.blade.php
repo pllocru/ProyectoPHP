@@ -70,7 +70,7 @@
                         <!-- Fecha de Contratación -->
                         <div>
                             <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Fecha de Contratación</label>
-                            <input type="date" name="hire_date" value="{{ old('hire_date') }}"
+                            <input type="date" name="hire_date" value="{{ old('hire_date',now()->format('Y-m-d')) }}"
                                 class="w-full border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
                             @error('hire_date') 
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p> 
