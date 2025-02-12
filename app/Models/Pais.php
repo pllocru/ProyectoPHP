@@ -9,17 +9,16 @@ class Pais extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nombre',
-        'codigo',
-        'moneda',
-    ];
+    protected $table = 'paises'; // 🔹 Especificamos la tabla correcta
 
-    /**
-     * Relación con clientes (un país puede tener varios clientes).
-     */
-    public function clientes()
-    {
-        return $this->hasMany(Client::class, 'pais_id');
-    }
+    protected $fillable = [
+        'iso2',
+        'iso3',
+        'prefijo',
+        'nombre',
+        'continente',
+        'subcontinente',
+        'iso_moneda',
+        'nombre_moneda'
+    ];
 }

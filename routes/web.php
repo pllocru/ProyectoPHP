@@ -31,18 +31,18 @@ Route::middleware(['auth', 'prevent.back.history'])->group(function () {
             Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');
         });
 
-        // Rutas para gestionar clientes
-        Route::prefix('clients')->group(function () {
-            Route::get('/', [ClientController::class, 'index'])->name('clients.index');
-            Route::get('/create', [ClientController::class, 'create'])->name('clients.create');
-            Route::post('/', [ClientController::class, 'store'])->name('clients.store');
-            Route::get('/{client}', [ClientController::class, 'show'])->name('clients.show');
-            Route::get('/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
-            Route::put('/{client}', [ClientController::class, 'update'])->name('clients.update');
-            Route::delete('/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
+        // 📌 Rutas para gestionar clientes
+        Route::prefix('clientes')->group(function () {
+            Route::get('/', [ClientController::class, 'index'])->name('clientes.index');
+            Route::get('/create', [ClientController::class, 'create'])->name('clientes.create');
+            Route::post('/', [ClientController::class, 'store'])->name('clientes.store');
+            Route::get('/{cliente}', [ClientController::class, 'show'])->name('clientes.show');
+            Route::get('/{cliente}/edit', [ClientController::class, 'edit'])->name('clientes.edit');
+            Route::put('/{cliente}', [ClientController::class, 'update'])->name('clientes.update');
+            Route::delete('/{cliente}', [ClientController::class, 'destroy'])->name('clientes.destroy');
         });
+
     });
 });
 
 require __DIR__ . '/auth.php';
-
