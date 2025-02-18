@@ -9,6 +9,14 @@
         <div class="max-w-full mx-auto sm:px-8 lg:px-20">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg p-8">
 
+                @if(session('success'))
+                <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)"
+                    class="bg-green-500 text-white px-4 py-3 rounded-md shadow-md mb-4 transition-opacity duration-500">
+                    <p>{{ session('success') }}</p>
+                </div>
+                @endif
+
+
                 <!-- Botón para crear nuevo usuario -->
                 <div class="flex justify-between mb-4">
                     <h3 class="text-lg font-bold text-gray-700 dark:text-gray-300">Usuarios Registrados</h3>
@@ -43,12 +51,16 @@
                                 <td class="py-4 px-6">{{ $user->role }}</td>
                                 <td class="py-4 px-6 text-center">
                                     <div class="flex justify-center gap-4">
-                                        <a href="{{ route('users.edit', ['user' => $user, 'page' => request('page', 1)]) }}" class="bg-yellow-500 dark:bg-yellow-600 hover:bg-yellow-600 dark:hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded shadow">
-                                            Editar
+                                        <a href="{{ route('users.edit', ['user' => $user, 'page' => request('page', 1)]) }}"
+                                            class="bg-yellow-500 dark:bg-yellow-600 hover:bg-yellow-600 dark:hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded shadow flex items-center gap-2">
+                                            <i class="fas fa-edit"></i> Editar
                                         </a>
-                                        <a href="{{ route('users.show', ['user' => $user, 'page' => request('page', 1)]) }}" class="bg-red-500 dark:bg-red-600 hover:bg-red-600 dark:hover:bg-red-700 text-white font-bold py-1 px-3 rounded shadow">
-                                            Eliminar
+
+                                        <a href="{{ route('users.show', ['user' => $user, 'page' => request('page', 1)]) }}"
+                                            class="bg-red-500 dark:bg-red-600 hover:bg-red-600 dark:hover:bg-red-700 text-white font-bold py-1 px-3 rounded shadow flex items-center gap-2">
+                                            <i class="fas fa-trash"></i> Eliminar
                                         </a>
+
                                     </div>
                                 </td>
                             </tr>

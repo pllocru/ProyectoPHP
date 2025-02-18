@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Editar Usuario') }}
+            {{ __('Editar Cliente') }}
         </h2>
     </x-slot>
 
@@ -10,20 +10,20 @@
             <div class="bg-white dark:bg-gray-800 shadow-md sm:rounded-lg p-6">
 
                 <h3 class="text-lg font-bold text-gray-700 dark:text-gray-300 mb-4">
-                    Editar Información del Usuario
+                    Editar Información del Cliente
                 </h3>
 
-                <form action="{{ route('users.update', $user) }}" method="POST" class="space-y-6">
+                <form action="{{ route('clientes.update', $cliente) }}" method="POST" class="space-y-6">
                     @csrf
                     @method('PUT')
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- DNI -->
+                        <!-- CIF -->
                         <div>
-                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">DNI</label>
-                            <input type="text" name="dni" value="{{ old('dni', $user->dni) }}"
-                                class="w-full border @error('dni') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
-                            @error('dni')
+                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">CIF</label>
+                            <input type="text" name="cif" value="{{ old('cif', $cliente->cif) }}"
+                                class="w-full border @error('cif') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
+                            @error('cif')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
@@ -31,19 +31,9 @@
                         <!-- Nombre -->
                         <div>
                             <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Nombre</label>
-                            <input type="text" name="name" value="{{ old('name', $user->name) }}"
-                                class="w-full border @error('name') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
-                            @error('name')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <!-- Email -->
-                        <div>
-                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Email</label>
-                            <input type="email" name="email" value="{{ old('email', $user->email) }}"
-                                class="w-full border @error('email') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
-                            @error('email')
+                            <input type="text" name="nombre" value="{{ old('nombre', $cliente->nombre) }}"
+                                class="w-full border @error('nombre') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
+                            @error('nombre')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
@@ -51,45 +41,65 @@
                         <!-- Teléfono -->
                         <div>
                             <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Teléfono</label>
-                            <input type="text" name="phone" value="{{ old('phone', $user->phone) }}"
-                                class="w-full border @error('phone') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
-                            @error('phone')
+                            <input type="text" name="telefono" value="{{ old('telefono', $cliente->telefono) }}"
+                                class="w-full border @error('telefono') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
+                            @error('telefono')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
 
-                        <!-- Dirección -->
+                        <!-- Correo -->
+                        <div>
+                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Correo Electrónico</label>
+                            <input type="email" name="correo" value="{{ old('correo', $cliente->correo) }}"
+                                class="w-full border @error('correo') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
+                            @error('correo')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Cuenta Corriente -->
                         <div class="md:col-span-2">
-                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Dirección</label>
-                            <input type="text" name="address" value="{{ old('address', $user->address) }}"
-                                class="w-full border @error('address') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
-                            @error('address')
+                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Cuenta Corriente</label>
+                            <input type="text" name="cuenta_corriente" value="{{ old('cuenta_corriente', $cliente->cuenta_corriente) }}"
+                                class="w-full border @error('cuenta_corriente') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
+                            @error('cuenta_corriente')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
 
-                        <!-- Fecha de Contratación -->
+                        <!-- País -->
                         <div>
-                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Fecha de Contratación</label>
-                            <input type="date" name="hire_date"
-                                value="{{ old('hire_date', $user->hire_date ? \Carbon\Carbon::parse($user->hire_date)->format('Y-m-d') : '') }}"
-                                class="w-full border @error('hire_date') border-red-500 @else border-gray-300 @enderror rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
-                            @error('hire_date')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <!-- Rol -->
-                        <div>
-                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Rol</label>
-                            <select name="role"
-                                class="w-full border @error('role') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
-                                @foreach ($roles as $role)
-                                <option value="{{ $role }}" {{ old('role', $user->role) == $role ? 'selected' : '' }}>
-                                    {{ $role }}
+                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">País</label>
+                            <select name="pais_id"
+                                class="w-full border @error('pais_id') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
+                                @foreach ($paises as $pais)
+                                <option value="{{ $pais->id }}" {{ old('pais_id', $cliente->pais_id) == $pais->id ? 'selected' : '' }}>
+                                    {{ $pais->nombre }}
                                 </option>
                                 @endforeach
                             </select>
-                            @error('role')
+                            @error('pais_id')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Moneda -->
+                        <div>
+                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Moneda</label>
+                            <input type="text" name="moneda" value="{{ old('moneda', $cliente->moneda) }}"
+                                class="w-full border @error('moneda') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
+                            @error('moneda')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Importe de Cuota Mensual -->
+                        <div>
+                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Importe Cuota Mensual (€)</label>
+                            <input type="number" step="0.01" name="importe_cuota_mensual" value="{{ old('importe_cuota_mensual', $cliente->importe_cuota_mensual) }}"
+                                class="w-full border @error('importe_cuota_mensual') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
+                            @error('importe_cuota_mensual')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
@@ -97,7 +107,7 @@
 
                     <!-- Botones de acción -->
                     <div class="mt-6 flex justify-end space-x-4">
-                        <a href="{{ route('users.index', ['page' => request('page', 1)]) }}"
+                        <a href="{{ route('clientes.index', ['page' => request('page', 1)]) }}"
                             class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg shadow">
                             Cancelar
                         </a>

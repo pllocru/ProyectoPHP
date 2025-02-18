@@ -15,14 +15,20 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <!-- Nuevo enlace a Empleados -->
+                    @role('Administrador')
+                    @if(auth()->user()->can('ver empleados'))
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         {{ __('Empleados') }}
                     </x-nav-link>
+                    @endif
 
+                    @if(auth()->user()->can('ver clientes'))
                     <x-nav-link :href="route('clientes.index')" :active="request()->routeIs('clientes.index')">
                         {{ __('Clientes') }}
                     </x-nav-link>
+                    @endif
+                    @endrole
+
                 </div>
 
             </div>

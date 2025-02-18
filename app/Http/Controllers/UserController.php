@@ -57,7 +57,10 @@ class UserController extends Controller
         // Asignar rol con Spatie
         $user->assignRole($request->role);
 
-        return redirect()->route('users.index')->with('success', 'Empleado creado correctamente.');
+        // Mensaje flash de éxito
+        session()->flash('success', 'Empleado creado correctamente.');
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -92,16 +95,17 @@ class UserController extends Controller
             'role' => 'required|exists:roles,name',
         ]);
 
-       
         // Actualizar usuario
         $user->update($validatedData);
 
         // Actualizar rol con Spatie
         $user->syncRoles([$request->role]);
 
-        return redirect()->route('users.index')->with('success', 'Usuario actualizado correctamente.');
-    }
+        // Mensaje flash de éxito
+        session()->flash('success', 'Usuario actualizado correctamente.');
 
+        return redirect()->route('users.index');
+    }
 
     /**
      * Elimina un empleado.
@@ -109,6 +113,10 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('users.index')->with('success', 'Empleado eliminado correctamente.');
+        
+        // Mensaje flash de éxito
+        session()->flash('success', 'Empleado eliminado correctamente.');
+
+        return redirect()->route('users.index');
     }
 }
