@@ -11,6 +11,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
 
+    protected $primaryKey = 'id'; // Definir clave primaria
+
+
     /**
      * The attributes that are mass assignable.
      *

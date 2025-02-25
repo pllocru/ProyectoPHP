@@ -21,6 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'role_or_permission' => RoleOrPermissionMiddleware::class,
             'prevent.back.history' => \App\Http\Middleware\PreventBackHistory::class, // Alias para PreventBackHistory
         ]);
+        
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

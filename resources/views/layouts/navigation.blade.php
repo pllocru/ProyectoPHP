@@ -16,17 +16,23 @@
                     </x-nav-link>
 
                     @role('Administrador')
-                    @if(auth()->user()->can('ver empleados'))
+                    
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         {{ __('Empleados') }}
                     </x-nav-link>
-                    @endif
-
-                    @if(auth()->user()->can('ver clientes'))
+                    
                     <x-nav-link :href="route('clientes.index')" :active="request()->routeIs('clientes.index')">
                         {{ __('Clientes') }}
                     </x-nav-link>
-                    @endif
+                    
+                    <x-nav-link :href="route('tareas.index')" :active="request()->routeIs('tareas.index')">
+                        {{ __('Tareas') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('cuotas.index')" :active="request()->routeIs('cuotas.index')">
+                        {{ __('Cuotas') }}
+                    </x-nav-link>
+
                     @endrole
 
                 </div>

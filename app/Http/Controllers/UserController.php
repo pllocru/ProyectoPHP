@@ -14,9 +14,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10); // Paginación de 10 empleados por página
+        if (!auth()->check()) {
+            abort(403, 'No autorizado'); // Bloquea acceso si no hay usuario autenticado
+        }
+    
+        $users = User::where('id', '!=', auth()->user()->id)->paginate(10);
         return view('users.index', compact('users'));
     }
+    
+
 
     /**
      * Muestra el formulario para crear un nuevo empleado.
@@ -40,19 +46,22 @@ class UserController extends Controller
             'address' => 'required|string|max:255',
             'hire_date' => 'required|date',
             'role' => 'required|exists:roles,name',
+            'password' => 'required|string|min:8', // 📌 Nueva validación de contraseña
         ]);
+
 
         // Crear usuario
         $user = User::create([
             'dni' => $request->dni,
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make('password'), // Contraseña predeterminada
+            'password' => Hash::make($request->password), // ✅ Guardar la contraseña ingresada por el usuario
             'phone' => $request->phone,
             'address' => $request->address,
             'hire_date' => $request->hire_date,
             'role' => $request->role,
         ]);
+
 
         // Asignar rol con Spatie
         $user->assignRole($request->role);
@@ -113,7 +122,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        
+
         // Mensaje flash de éxito
         session()->flash('success', 'Empleado eliminado correctamente.');
 
