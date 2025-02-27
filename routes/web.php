@@ -6,11 +6,19 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\TareaController;
+use Inertia\Inertia;
+
 
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/inertia', function () {
+    return Inertia::render('Dashboard'); // Debe coincidir con el nombre del archivo Vue
+});
+
 
 Route::middleware(['auth', 'prevent.back.history'])->group(function () {
     Route::get('/dashboard', function () {

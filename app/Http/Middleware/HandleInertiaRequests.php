@@ -9,7 +9,7 @@ class HandleInertiaRequests extends Middleware
 {
     public function rootView(Request $request): string
     {
-        return 'layouts.app'; // Usa la plantilla Blade en resources/views/app.blade.php
+        return 'app'; // Usa la plantilla Blade en resources/views/app.blade.php
     }
 
     public function version(Request $request): ?string

@@ -48,7 +48,7 @@
                                 <td class="py-4 px-6 text-center">
                                     <div class="flex justify-center gap-4">
                                         <a href="{{ route('clientes.edit', ['cliente' => $cliente, 'page' => request('page', 1)]) }}" class="bg-yellow-500 dark:bg-yellow-600 hover:bg-yellow-600 dark:hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded shadow">
-                                            Editar
+                                            <i class="fas fa-edit"></i> Editar
                                         </a>
                                         <form action="{{ route('clientes.destroy', $cliente) }}" method="POST"
                                             onsubmit="return confirm('¿Estás seguro de que deseas eliminar este cliente? Esta acción no se puede deshacer.');">
@@ -56,7 +56,7 @@
                                             @method('DELETE')
                                             <button type="submit"
                                                 class="bg-red-500 dark:bg-red-600 hover:bg-red-600 dark:hover:bg-red-700 text-white font-bold py-1 px-3 rounded shadow">
-                                                Eliminar
+                                                <i class="fas fa-trash"></i> Eliminar
                                             </button>
                                         </form>
                                     </div>
