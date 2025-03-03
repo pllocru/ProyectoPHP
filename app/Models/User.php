@@ -24,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'google_id',
         'phone',
         'address',
         'hire_date',
@@ -59,7 +60,7 @@ class User extends Authenticatable
      */
     public static function getRoles()
     {
-        return ['Cliente', 'Administrador', 'Operario'];
+        return ['Administrador', 'Operario'];
     }
 }
 

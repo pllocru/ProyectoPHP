@@ -31,12 +31,13 @@
                         <!-- Nombre -->
                         <div>
                             <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Nombre</label>
-                            <input type="text" name="nombre" value="{{ old('nombre', $cliente->nombre) }}"
-                                class="w-full border @error('nombre') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
-                            @error('nombre')
+                            <input type="text" name="name" value="{{ old('name', $cliente->name) }}"
+                                class="w-full border @error('name') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
+                            @error('name')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
+
 
                         <!-- Teléfono -->
                         <div>
@@ -50,17 +51,19 @@
 
                         <!-- Correo -->
                         <div>
-                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Correo Electrónico</label>
-                            <input type="email" name="correo" value="{{ old('correo', $cliente->correo) }}"
-                                class="w-full border @error('correo') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
-                            @error('correo')
+                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Correo
+                                Electrónico</label>
+                            <input type="email" name="email" value="{{ old('email', $cliente->email) }}"
+                                class="w-full border @error('email') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
+                            @error('email')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <!-- Cuenta Corriente -->
                         <div class="md:col-span-2">
-                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Cuenta Corriente</label>
+                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Cuenta
+                                Corriente</label>
                             <input type="text" name="cuenta_corriente"
                                 value="{{ old('cuenta_corriente', $cliente->cuenta_corriente) }}"
                                 class="w-full border @error('cuenta_corriente') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
@@ -88,7 +91,8 @@
                         <!-- Moneda -->
                         <div>
                             <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Moneda</label>
-                            <input type="text" id="moneda" name="moneda" value="{{ old('moneda', $cliente->moneda) }}" readonly
+                            <input type="text" id="moneda" name="moneda" value="{{ old('moneda', $cliente->moneda) }}"
+                                readonly
                                 class="w-full border @error('moneda') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 cursor-not-allowed">
                             @error('moneda')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -97,7 +101,8 @@
 
                         <!-- Importe de Cuota Mensual -->
                         <div>
-                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Importe Cuota Mensual (€)</label>
+                            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1">Importe Cuota Mensual
+                                (€)</label>
                             <input type="number" step="0.01" name="importe_cuota_mensual"
                                 value="{{ old('importe_cuota_mensual', $cliente->importe_cuota_mensual) }}"
                                 class="w-full border @error('importe_cuota_mensual') border-red-500 @else border-gray-300 @enderror dark:border-gray-600 rounded-lg shadow-sm px-4 py-2 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500">
@@ -126,7 +131,7 @@
     </div>
 
     <script>
-        document.getElementById('pais_id').addEventListener('change', function() {
+        document.getElementById('pais_id').addEventListener('change', function () {
             var moneda = this.options[this.selectedIndex].getAttribute('data-moneda');
             document.getElementById('moneda').value = moneda ? moneda : 'NULL';
         });

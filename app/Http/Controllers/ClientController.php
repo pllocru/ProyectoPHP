@@ -21,21 +21,30 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'cif' => 'required|unique:clientes,cif',
-            'nombre' => 'required|string|max:255',
+        $validated = $request->validate([
+            'cif' => 'required|string|max:50|unique:clientes,cif',
+            'name' => 'required|string|max:100',
             'telefono' => 'required|string|max:20',
-            'correo' => 'required|email|unique:clientes,correo',
+            'email' => 'required|email|max:100|unique:clientes,email',
             'cuenta_corriente' => 'required|string|max:34',
-            'pais_id' => 'required|exists:paises,id',
-            'moneda' => 'required|string|size:3',
+            'pais_id' => 'required|integer',
+            'moneda' => 'required|string|max:10',
             'importe_cuota_mensual' => 'required|numeric|min:0',
         ]);
 
-        Cliente::create($request->all());
+        Cliente::create($validated);
 
-        return redirect()->route('clientes.index')->with('success', 'Cliente creado correctamente.');
+        session()->flash('success', 'Cliente creado correctamente.');
+
+        return redirect()->route('clientes.index');
     }
+
+    public function show(Cliente $cliente)
+    {
+        return view('clientes.show', compact('cliente'));
+    }
+
+
 
     public function edit(Cliente $cliente)
     {
@@ -47,9 +56,9 @@ class ClientController extends Controller
     {
         $request->validate([
             'cif' => 'required|unique:clientes,cif,' . $cliente->id,
-            'nombre' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',
-            'correo' => 'required|email|unique:clientes,correo,' . $cliente->id,
+            'email' => 'required|email|unique:clientes,email,' . $cliente->id,
             'cuenta_corriente' => 'required|string|max:34',
             'pais_id' => 'required|exists:paises,id',
             'moneda' => 'required|string|size:3',
@@ -58,12 +67,21 @@ class ClientController extends Controller
 
         $cliente->update($request->all());
 
-        return redirect()->route('clientes.index')->with('success', 'Cliente actualizado correctamente.');
+        session()->flash('success', 'Cliente actualizado correctamente.');
+
+        return redirect()->route('clientes.index');
     }
+
 
     public function destroy(Cliente $cliente)
     {
         $cliente->delete();
         return redirect()->route('clientes.index')->with('success', 'Cliente eliminado correctamente.');
     }
+
+    public function delete(Cliente $cliente)
+    {
+        return view('clientes.delete', compact('cliente'));
+    }
+
 }

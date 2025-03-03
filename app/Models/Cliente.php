@@ -17,8 +17,9 @@ class Cliente extends Model
         'cuenta_corriente',
         'pais_id',
         'moneda',
-        'importe_cuota_mensual',
+        'importe_cuota_mensual'
     ];
+    
 
     /**
      * Relación con la tabla de países.

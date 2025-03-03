@@ -4,38 +4,40 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                    </a>
-                </div>
-
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
+                    <!-- Mostrar "Tareas" en el menú según el rol -->
                     @role('Administrador')
-                    
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
-                        {{ __('Empleados') }}
-                    </x-nav-link>
-                    
-                    <x-nav-link :href="route('clientes.index')" :active="request()->routeIs('clientes.index')">
-                        {{ __('Clientes') }}
-                    </x-nav-link>
-                    
-                    <x-nav-link :href="route('tareas.index')" :active="request()->routeIs('tareas.index')">
-                        {{ __('Tareas') }}
-                    </x-nav-link>
-
-                    <x-nav-link :href="route('cuotas.index')" :active="request()->routeIs('cuotas.index')">
-                        {{ __('Cuotas') }}
-                    </x-nav-link>
-
+                        <x-nav-link :href="route('tareas.index')" :active="request()->routeIs('tareas.index')">
+                            {{ __('Tareas') }}
+                        </x-nav-link>
                     @endrole
 
+                    @role('Operario')
+                        <x-nav-link :href="route('tareas.misTareas')" :active="request()->routeIs('tareas.misTareas')">
+                            {{ __('Mis Tareas') }}
+                        </x-nav-link>
+                    @endrole
+
+                    <!-- SOLO los Administradores pueden ver estas opciones -->
+                    @role('Administrador')
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                            {{ __('Empleados') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('clientes.index')" :active="request()->routeIs('clientes.index')">
+                            {{ __('Clientes') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('cuotas.index')" :active="request()->routeIs('cuotas.index')">
+                            {{ __('Cuotas') }}
+                        </x-nav-link>
+                    @endrole
                 </div>
+
 
             </div>
 

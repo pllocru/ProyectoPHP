@@ -47,7 +47,7 @@
                                 <td class="py-4 px-6">{{ $user->name }}</td>
                                 <td class="py-4 px-6">{{ $user->email }}</td>
                                 <td class="py-4 px-6">{{ $user->phone }}</td>
-                                <td class="py-4 px-6">{{ $user->hire_date->format('d-m-Y') }}</td>
+                                <td class="py-4 px-6">{{ $user->hire_date }}</td>
                                 <td class="py-4 px-6">{{ $user->role }}</td>
                                 <td class="py-4 px-6 text-center">
                                     <div class="flex justify-center gap-4">

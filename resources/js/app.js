@@ -1,16 +1,31 @@
 import { createApp, h } from 'vue';
-import { createInertiaApp } from '@inertiajs/inertia-vue3';
+import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import Alpine from 'alpinejs';
+import '../css/app.css';
 
-createInertiaApp({
-    resolve: (name) =>
-        resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
-    setup({ el, App, props, plugin }) {
-        const app = createApp({ render: () => h(App, props) })
-            .use(plugin);
+// Iniciar Alpine.js
+window.Alpine = Alpine;
+Alpine.start();
 
-        app.config.globalProperties.route = window.route; // ✅ Ahora `route()` estará disponible en Vue
+document.addEventListener('DOMContentLoaded', () => {
+    const appElement = document.getElementById('app');
 
-        app.mount(el);
-    },
+    if (!appElement) {
+        console.warn("⚠️ Advertencia: No se encontró #app en el DOM. Evitando error.");
+        return;
+    }
+
+    console.log("✅ #app encontrado, iniciando Inertia...");
+
+    createInertiaApp({
+        resolve: (name) =>
+            resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+        setup({ el, App, props, plugin }) {
+            console.log("🚀 Montando Vue en:", el);
+            createApp({ render: () => h(App, props) })
+                .use(plugin)
+                .mount(el);
+        },
+    });
 });

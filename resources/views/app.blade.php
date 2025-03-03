@@ -6,7 +6,7 @@
     @vite('resources/js/app.js')
     @inertiaHead
     <script>
-    @routes
+    
 </script>
 
   </head>
